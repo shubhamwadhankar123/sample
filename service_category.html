@@ -1,0 +1,45 @@
+<!-- service_category.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Category</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Service Category</h1>
+    <div id="serviceList"></div>
+
+    <script>
+        fetch('/api/get-services')
+        .then(response => response.json())
+        .then(data => {
+            const serviceList = document.getElementById('serviceList');
+            data.services.forEach(service => {
+                const serviceDiv = document.createElement('div');
+                serviceDiv.innerHTML = `
+                    <h3>${service.service_name}</h3>
+                    <p>Name: ${service.name}</p>
+                    <p>Address: ${service.address}</p>
+                    <p>Mobile No: ${service.mobile_no}</p>
+                    <img src="${service.service_image}" alt="${service.service_name}" width="100">
+                `;
+                serviceList.appendChild(serviceDiv);
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+// Endpoint to get all services
+app.get('/api/get-services', (req, res) => {
+    const sql = 'SELECT * FROM services';
+    db.query(sql, (err, results) => {
+        if (err) {
+            return res.status(500).json({ success: false, message: 'Database error.' });
+        }
+        res.json({ success: true, services: results });
+    });
+});

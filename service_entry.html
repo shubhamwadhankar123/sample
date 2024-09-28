@@ -1,0 +1,33 @@
+<!-- service_entry.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Entry Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Service Entry Form</h1>
+    <form id="serviceForm" enctype="multipart/form-data">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="service_name">Service Name:</label>
+        <input type="text" id="service_name" name="service_name" required>
+
+        <label for="service_image">Service Image:</label>
+        <input type="file" id="service_image" name="service_image" accept="image/*" required>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required>
+
+        <label for="mobile_no">Mobile No:</label>
+        <input type="tel" id="mobile_no" name="mobile_no" required>
+
+        <button type="submit">Submit Service</button>
+    </form>
+
+    <script src="script.js"></script>
+</body>
+</html>
